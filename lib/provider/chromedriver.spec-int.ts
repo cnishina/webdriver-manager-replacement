@@ -26,10 +26,10 @@ describe('chromedriver', () => {
       });
     
       afterEach(() => {
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = origTimeout;
         try {
           rimraf.sync(tmpDir);
         } catch (err) {}
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = origTimeout;
       });
 
       it('should download the latest for MacOS',  async(done) => {
