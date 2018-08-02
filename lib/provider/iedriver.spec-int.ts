@@ -24,10 +24,10 @@ describe('iedriver', () => {
     });
   
     afterEach(() => {
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = origTimeout;
       try {
         rimraf.sync(tmpDir);
       } catch (err) {}
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = origTimeout;
     });
 
     it('should download the file', async(done) => {
