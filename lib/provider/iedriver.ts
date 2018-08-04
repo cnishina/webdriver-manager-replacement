@@ -34,7 +34,8 @@ export class IEDriver {
    * @param version Optional to provide the version number or latest.
    */
   async updateBinary(version?: string): Promise<any> {
-    await updateXml(this.requestUrl, path.resolve(this.outDir, this.cacheFileName));
+    await updateXml(this.requestUrl,
+      { fileName: path.resolve(this.outDir, this.cacheFileName) });
     let versionList = convertXmlToVersionList(
       path.resolve(this.outDir, this.cacheFileName), '.zip',
       versionParser,
@@ -52,7 +53,8 @@ export class IEDriver {
     try {
       size = fs.statSync(chromeDriverZip).size;
     } catch (err) {}
-    await requestBinary(chromeDriverUrl, chromeDriverZip, size);
+    await requestBinary(chromeDriverUrl,
+      { fileName: chromeDriverZip, fileSize: size });
 
     // Unzip and rename all the files (a grand total of 1) and set the
     // permissions.
