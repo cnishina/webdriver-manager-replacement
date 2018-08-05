@@ -40,11 +40,12 @@ export class SeleniumServer {
     // We should check the jar file size if it exists. The size will
     // be used to either make the request, or quit the request if the file
     // size matches.
-    let size = 0;
+    let fileSize = 0;
     try {
-      size = fs.statSync(seleniumServerJar).size;
+      fileSize = fs.statSync(seleniumServerJar).size;
     } catch (err) {}
-    await requestBinary(seleniumServerUrl, seleniumServerJar, size);
+    await requestBinary(seleniumServerUrl,
+      { fileName: seleniumServerJar, fileSize });
     generateConfigFile(this.outDir,
       path.resolve(this.outDir, this.configFileName),
       matchBinaries(), seleniumServerJar);
