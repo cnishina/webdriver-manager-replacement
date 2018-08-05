@@ -69,14 +69,14 @@ describe('binary_utils', () => {
 
   describe('requestBody', () => {
     it('should download a json object file', async() => {
-      let foo  = await requestBody(fooJsonUrl, {});
+      let foo = await requestBody(fooJsonUrl, {});
       let fooJson = JSON.parse(foo);
       expect(fooJson["foo"]).toBe("abc");
       expect(fooJson["bar"]).toBe(123);
     });
 
     it('should download a json array file', async() => {
-      let foo  = await requestBody(fooArrayUrl, {});
+      let foo = await requestBody(fooArrayUrl, {});
       let fooJson = JSON.parse(foo);
       expect(fooJson.length).toBe(3);
       expect(fooJson[0]['foo']).toBe('abc');
