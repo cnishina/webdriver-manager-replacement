@@ -39,7 +39,7 @@ export class GeckoDriver {
    */
   async updateBinary(version?: string): Promise<any> {
     await updateJson(this.requestUrl,
-      path.resolve(this.outDir, this.cacheFileName),
+      { fileName: path.resolve(this.outDir, this.cacheFileName) },
       this.oauthToken);
 
     let versionList = convertJsonToVersionList(

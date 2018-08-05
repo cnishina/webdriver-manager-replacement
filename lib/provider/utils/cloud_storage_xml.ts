@@ -10,7 +10,7 @@ import { VersionList } from './version_list';
  * Read the xml file from cache. If the cache time has been exceeded or the
  * file does not exist, make an http request and write it to the file.
  * @param xmlUrl The xml url.
- * @param fileName The xml filename.
+ * @param httpOptions The http options for the request.
  */
 export async function updateXml(
     xmlUrl: string,
