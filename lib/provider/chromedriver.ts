@@ -46,7 +46,7 @@ export class ChromeDriver {
    */
   async updateBinary(version?: string): Promise<any> {
     await updateXml(this.requestUrl,
-      path.resolve(this.outDir, this.cacheFileName));
+      { fileName: path.resolve(this.outDir, this.cacheFileName)});
 
     let versionList = convertXmlToVersionList(
       path.resolve(this.outDir, this.cacheFileName), '.zip',

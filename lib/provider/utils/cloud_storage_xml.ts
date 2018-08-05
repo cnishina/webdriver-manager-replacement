@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as semver from 'semver';
 import { convertXml2js, readXml } from './file_utils';
 import { isExpired } from './file_utils';
-import { requestBody, JsonObject } from './http_utils';
+import { HttpOptions, JsonObject, requestBody } from './http_utils';
 import { VersionList } from './version_list';
 
 /**
@@ -14,18 +14,18 @@ import { VersionList } from './version_list';
  */
 export async function updateXml(
     xmlUrl: string,
-    fileName: string): Promise<JsonObject> {
+    httpOptions: HttpOptions): Promise<JsonObject> {
 
-  if (isExpired(fileName)) {
-    let contents = await requestBody(xmlUrl, { fileName });
-    let dir = path.dirname(fileName);
+  if (isExpired(httpOptions.fileName)) {
+    let contents = await requestBody(xmlUrl, httpOptions);
+    let dir = path.dirname(httpOptions.fileName);
     try {
       fs.mkdirSync(dir);
     } catch (err) {}
-    fs.writeFileSync(fileName, contents);
+    fs.writeFileSync(httpOptions.fileName, contents);
     return convertXml2js(contents);
   } else {
-    return readXml(fileName);
+    return readXml(httpOptions.fileName);
   }
 }
 

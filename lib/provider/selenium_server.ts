@@ -26,7 +26,8 @@ export class SeleniumServer {
    * @param version Optional to provide the version number or latest.
    */
   async updateBinary(version?: string): Promise<any> {
-    await updateXml(this.requestUrl, path.resolve(this.outDir, this.cacheFileName));
+    await updateXml(this.requestUrl,
+      { fileName: path.resolve(this.outDir, this.cacheFileName) });
     let versionList = convertXmlToVersionList(
       path.resolve(this.outDir, this.cacheFileName), 'selenium-server-standalone',
       versionParser,
