@@ -17,7 +17,7 @@ describe('iedriver', () => {
     let origTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
 
     beforeEach(() => {
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000;
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;
       try {
         fs.mkdirSync(tmpDir);
       } catch (err) {}

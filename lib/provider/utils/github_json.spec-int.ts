@@ -7,6 +7,17 @@ const fileName = path.resolve('spec/support/files/gecko.json');
 describe('github_json', () => {
 
   describe('requestRateLimit', () => {
+    let origTimeout: number;
+
+    beforeAll(() => {
+      origTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;
+    });
+
+    afterAll(() => {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = origTimeout;
+    });
+
     it('should get rate limit assuming quota exists', async(done) => {
       if (!await checkConnectivity('rate limit test')) {
         done();

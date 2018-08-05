@@ -38,7 +38,8 @@ export class GeckoDriver {
    * @param version Optional to provide the version number or latest.
    */
   async updateBinary(version?: string): Promise<any> {
-    await updateJson(this.requestUrl, path.resolve(this.outDir, this.cacheFileName),
+    await updateJson(this.requestUrl, 
+      { fileName: path.resolve(this.outDir, this.cacheFileName) },
       this.oauthToken);
     let versionList = convertJsonToVersionList(
       path.resolve(this.outDir, this.cacheFileName));
@@ -55,7 +56,8 @@ export class GeckoDriver {
     try {
       size = fs.statSync(geckoDriverCompressed).size;
     } catch (err) {}
-    await requestBinary(geckoDriverUrl, geckoDriverCompressed, size);
+    await requestBinary(geckoDriverUrl,
+      { fileName: geckoDriverCompressed, fileSize: size });
 
     // Uncompress tarball (for linux and mac) or unzip the file for Windows.
     // Rename all the files (a grand total of 1) and set the permissions.
