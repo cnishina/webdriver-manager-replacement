@@ -7,13 +7,19 @@
   "scripts": {
     "http-server": "tsc && node dist/spec/server/http_server.js",
     "jasmine": "jasmine",
-    "prepare": "tsc",
+    "prepare": "npm run compile",
     "proxy-server": "tsc && node dist/spec/server/proxy_server.js",
     "test": "tsc && npm run test-unit && npm run test-int && npm run test-proxy",
     "test-int": "tsc && jasmine JASMINE_CONFIG_PATH=spec/jasmine-int.json",
     "test-proxy": "tsc && jasmine JASMINE_CONFIG_PATH=spec/jasmine-proxy.json",
     "test-unit": "tsc && jasmine JASMINE_CONFIG_PATH=spec/jasmine-unit.json",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
   },
   "repository": {
     "type": "git",
@@ -45,6 +51,7 @@
     "http-proxy": "^1.17.0",
     "jasmine": "^3.1.0",
     "rimraf": "^2.6.2",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "gts": "^0.8.0"
   }
 }
