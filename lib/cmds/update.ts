@@ -12,6 +12,8 @@ export function update(options: Options): Promise<any> {
   for (let provider of options.providers) {
     promises.push(provider.binary.updateBinary(provider.version));
   }
-  promises.push(options.server.binary.updateBinary(options.server.version));
+  if (options.server && options.server.binary) {
+    promises.push(options.server.binary.updateBinary(options.server.version));
+  }
   return Promise.all(promises);
 }

@@ -16,6 +16,9 @@ export function start(options: Options): Promise<any> {
         provider.binary.getBinaryPath(provider.version);
     }
   }
-  return (options.server.binary as SeleniumServer)
-    .startServer(javaOpts, options.server.version);
+  if (options.server && options.server.binary) {
+    return (options.server.binary as SeleniumServer)
+      .startServer(javaOpts, options.server.version);
+  }
+  return Promise.reject('Could not start the server');
 }
