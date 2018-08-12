@@ -6,12 +6,12 @@ import { Provider } from '../provider/provider';
 export interface Options {
   providers?: Array<{
     name?: string,
-    version?: null,
+    version?: string,
     binary?: Provider
   }>,
   server?: {
     name?: string,
-    version?: null,
+    version?: string,
     binary?: Provider
   },
   proxy?: string,
