@@ -22,7 +22,9 @@ export interface Options {
     // The version which does not have to follow semver.
     version?: string,
     // The server binary object.
-    binary?: Provider
+    binary?: Provider,
+    // run as node
+    runAsNode?: boolean
   },
   // The proxy url (must include protocol with url)
   proxy?: string,

@@ -12,9 +12,9 @@ import { SeleniumServer } from '../provider/selenium_server';
 export function handler(argv: yargs.Arguments) {
   log.setLevel(argv.log_level);
   let options = constructProviders(argv);
+  let seleniumServer = (options.server.binary as SeleniumServer);
   process.stdin.resume();
   process.on('SIGINT', () => {
-    let seleniumServer = options.server.binary as SeleniumServer;
     process.kill(seleniumServer.seleniumProcess.pid);
     process.exit(process.exitCode);
   });
@@ -37,7 +37,7 @@ export function start(options: Options): Promise<number> {
   }
   if (options.server && options.server.binary) {
     return (options.server.binary as SeleniumServer)
-      .startServer(javaOpts, options.server.version);
+      .startServer(javaOpts, options.server.version, options.server.runAsNode);
   }
   return Promise.reject('Could not start the server');
 }
