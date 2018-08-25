@@ -1,26 +1,11 @@
-  {
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "declaration": true,
-    "removeComments": false,
-    "noImplicitAny": true,
-    "outDir": "./dist",
-    "lib": [
-      "es2017"
-    ],
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
-    "types": [
-      "jasmine",
-      "node"
-    ],
+    "rootDir": ".",
+    "outDir": "dist"
   },
-  "exclude": [
-    "dist",
-    "node_modules"
+  "include": [
+    "lib/*.ts",
+    "spec/**/*.ts"
   ]
 }
