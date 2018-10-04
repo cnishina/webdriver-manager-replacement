@@ -15,3 +15,15 @@ jobs:
       - run: npm run test-int
       - run: npm run test-proxy
       - run: npm run test-e2e
+workflows:
+  version: 2
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                master
+    jobs:
+      - build
