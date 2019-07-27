@@ -1,3 +1,7 @@
+# 2.0.2
+
+Releases webdriver-manager master branch
+
 # 13.0.0
 
 Rewrite webdriver-manager. Highlights:
@@ -17,7 +21,7 @@ Rewrite webdriver-manager. Highlights:
 
 ```
   import * as wdm from 'webdriver-manager';
-  
+
   wdm.setLogLevel('debug');  // uses loglevel logger 'webdriver-manager'
 ```
 

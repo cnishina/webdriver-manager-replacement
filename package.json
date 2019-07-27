@@ -1,9 +1,11 @@
 {
-  "name": "webdriver-manager",
-  "version": "13.0.0",
-  "description": "webdriver-manager",
+  "name": "webdriver-manager-replacement",
+  "version": "2.0.2",
+  "description": "webdriver-manager-replacement",
   "bin": {
-    "webdriver-manager": "bin/webdriver-manager"
+    "webdriver-manager-replacement": "bin/webdriver-manager-replacement",
+    "webdriver-manager": "bin/webdriver-manager",
+    "wdm": "bin/webdriver-manager-replacement"
   },
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
@@ -48,14 +50,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angular/webdriver-manager.git"
+    "url": "git+https://github.com/cnishina/webdriver-manager-replacement.git"
   },
   "author": "Craig Nishina <craig.nishina@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/angular/webdriver-manager/issues"
+    "url": "https://github.com/cnishina/webdriver-manager-replacement/issues"
   },
-  "homepage": "https://github.com/angular/webdriver-manager#readme",
+  "homepage": "https://github.com/cnishina/webdriver-manager-replacement#readme",
   "dependencies": {
     "adm-zip": "^0.4.13",
     "loglevel": "^1.6.1",
