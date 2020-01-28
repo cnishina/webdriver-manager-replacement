@@ -123,7 +123,7 @@ export async function tarFileList(tarball: string): Promise<string[]> {
         onentry: entry => {
           fileList.push(entry['path'].toString());
         }
-      });    
+      });
   return fileList;
 }
 
@@ -141,15 +141,8 @@ export async function uncompressTarball(
   }
 
   const fileList = await tarFileList(tarball);
-  return tar.extract({file: tarball}).then(() => {
-    const dstFiles: string[] = [];
-    for (const fileItem of fileList) {
-      const dstFileName = path.resolve(dstDir, fileItem);
-      fs.renameSync(path.resolve(fileItem), dstFileName);
-      dstFiles.push(dstFileName);
-    }
-    return dstFiles;
-  });
+  tar.extract({file: tarball, sync: true, cwd: dstDir});
+  return fileList.map((fileName) => path.resolve(dstDir, fileName));
 }
 
 /**
