@@ -141,7 +141,9 @@ export class SeleniumServer extends ProviderClass implements ProviderInterface {
         this.seleniumProcess =
             childProcess.spawn(java, cmd, {stdio: 'inherit'});
         log.info(`selenium process id: ${this.seleniumProcess.pid}`);
-        callback(this.seleniumProcess.pid);
+        if (callback) {
+          callback(this.seleniumProcess.pid);
+        }
 
         this.seleniumProcess.on('exit', (code: number) => {
           log.info(`Selenium Standalone has exited with code: ${code}`);
