@@ -10,6 +10,7 @@ import {convertXmlToVersionList, updateXml} from './utils/cloud_storage_xml';
 import {generateConfigFile, getBinaryPathFromConfig, removeFiles,} from './utils/file_utils';
 import {curlCommand, initOptions, requestBinary} from './utils/http_utils';
 import {getVersion} from './utils/version_list';
+import {Options} from "..";
 
 const log = loglevel.getLogger('webdriver-manager');
 
@@ -112,9 +113,10 @@ export class SeleniumServer extends ProviderClass implements ProviderInterface {
    * Starts selenium standalone server and handles emitted exit events.
    * @param opts The options to pass to the jar file.
    * @param version The optional version of the selenium jar file.
+   * @param callback Function to get called when Selenium is started
    * @returns A promise so the server can run while awaiting its completion.
    */
-  startServer(opts: {[key: string]: string}, version?: string):
+  startServer(opts: {[key: string]: string}, version?: string, callback?: (pid: number) => void):
       Promise<number> {
     const java = this.getJava();
     return new Promise<number>(async (resolve, _) => {
@@ -139,6 +141,7 @@ export class SeleniumServer extends ProviderClass implements ProviderInterface {
         this.seleniumProcess =
             childProcess.spawn(java, cmd, {stdio: 'inherit'});
         log.info(`selenium process id: ${this.seleniumProcess.pid}`);
+        callback(this.seleniumProcess.pid);
 
         this.seleniumProcess.on('exit', (code: number) => {
           log.info(`Selenium Standalone has exited with code: ${code}`);
