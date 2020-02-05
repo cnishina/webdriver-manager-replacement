@@ -36,20 +36,22 @@ export async function handler(argv: yargs.Arguments) {
  * Goes through all the option providers and creates a set of java options
  * to pass to java when starting the selenium server standalone.
  * @param options The constructed options.
+ * @param callback Function to get called when Selenium is started
  * @returns Promise starting the server with the resolved exit code.
  */
-export function start(options: Options): Promise<number> {
+export function start(options: Options, callback?: (pid: number) => void): Promise<number> {
   const optionsBinary = addOptionsBinary(options);
-  return startBinary(optionsBinary);
+  return startBinary(optionsBinary, callback);
 }
 
 /**
  * Goes through all the option providers and creates a set of java options
  * to pass to java when starting the selenium server standalone.
  * @param optionsBinary The constructed options with binaries.
+ * @param callback Function to get called when Selenium is started
  * @returns Promise starting the server with the resolved exit code.
  */
-export function startBinary(optionsBinary: OptionsBinary): Promise<number> {
+export function startBinary(optionsBinary: OptionsBinary, callback?: (pid: number) => void): Promise<number> {
   if (optionsBinary.server && optionsBinary.server.binary) {
     const seleniumServer = (optionsBinary.server.binary as SeleniumServer);
     if (optionsBinary.server.chromeLogs) {
@@ -73,7 +75,7 @@ export function startBinary(optionsBinary: OptionsBinary): Promise<number> {
       }
     }
     return seleniumServer.startServer(seleniumServer.javaOpts,
-      optionsBinary.server.version);
+      optionsBinary.server.version, callback);
   }
   return Promise.reject('Could not start the server');
 }
