@@ -1,7 +1,6 @@
 import * as yargs from 'yargs';
 import {ChromeDriver} from '../provider/chromedriver';
 import {GeckoDriver} from '../provider/geckodriver';
-import {IEDriver} from '../provider/iedriver';
 import {ProviderConfig} from '../provider/provider';
 import {SeleniumServer, SeleniumServerProviderConfig} from '../provider/selenium_server';
 
@@ -34,8 +33,6 @@ export function addOptionsBinary(options: Options): OptionsBinary {
         const geckoProviderConfig = providerConfig;
         geckoProviderConfig.oauthToken = optionsBinary.githubToken;
         browserDriver.binary = new GeckoDriver(geckoProviderConfig);
-      } else if (browserDriver.name === 'iedriver') {
-        browserDriver.binary = new IEDriver(providerConfig);
       }
     }
   }
@@ -62,7 +59,6 @@ export function convertArgs2AllOptions(argv: yargs.Arguments): Options {
       {name: 'chromedriver'},
       {name: 'chromium'},
       {name: 'geckodriver'},
-      {name: 'iedriver'}
     ],
     server: {name: 'selenium'},
     outDir: argv['out_dir'] as string
@@ -92,9 +88,6 @@ export function convertArgs2Options(argv: yargs.Arguments): Options {
   }
   if (argv['geckodriver'] as boolean) {
     setVersions('geckodriver', argv, options.browserDrivers);
-  }
-  if (argv['iedriver'] as boolean) {
-    setVersions('iedriver', argv, options.browserDrivers);
   }
   if (argv['selenium']) {
     options.server = {};

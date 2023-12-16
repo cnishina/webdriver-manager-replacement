@@ -6,7 +6,6 @@ import * as rimraf from 'rimraf';
 
 import {ChromeDriver} from '../provider/chromedriver';
 import {GeckoDriver} from '../provider/geckodriver';
-import {IEDriver} from '../provider/iedriver';
 import {SeleniumServer} from '../provider/selenium_server';
 import {OptionsBinary} from './options_binary';
 import {updateBinary} from './update';
@@ -67,15 +66,6 @@ describe('update cmd', () => {
     };
     await updateBinary(optionsBinary);
     expect(fs.readdirSync(tmpDir).length).toBe(3);
-  });
-
-  it('should download iedriver files', async () => {
-    const iedriver = new IEDriver({outDir: tmpDir});
-    iedriver.osType = 'Windows_NT';
-    const optionsBinary:
-        OptionsBinary = {outDir: tmpDir, browserDrivers: [{binary: iedriver}]};
-    await updateBinary(optionsBinary);
-    expect(fs.readdirSync(tmpDir).length).toBe(4);
   });
 
   it('should download default files', async () => {
