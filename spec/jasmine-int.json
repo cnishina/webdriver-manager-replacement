@@ -1,7 +1,7 @@
 {
   "spec_dir": "dist",
   "spec_files": [
-    "**/chromium.spec-int.js"
+    "**/chromium2.spec-int.js"
   ],
   "stopSpecOnExpectationFailure": false,
   "random": false
