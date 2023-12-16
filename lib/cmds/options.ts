@@ -17,7 +17,7 @@ export interface Options {
 }
 
 export type BrowserDriverName =
-  'chromedriver'|'geckodriver'|'iedriver'|'chromium';
+  'chromedriver'|'geckodriver'|'chromium';
 
 /**
  * Contains information about a browser driver.

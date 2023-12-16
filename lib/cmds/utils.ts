@@ -1,7 +1,6 @@
 import * as yargs from 'yargs';
 import {ChromeDriver} from '../provider/chromedriver';
 import {GeckoDriver} from '../provider/geckodriver';
-import {IEDriver} from '../provider/iedriver';
 import {ProviderConfig} from '../provider/provider';
 import {SeleniumServer, SeleniumServerProviderConfig} from '../provider/selenium_server';
 
@@ -92,9 +91,6 @@ export function convertArgs2Options(argv: yargs.Arguments): Options {
   }
   if (argv['geckodriver'] as boolean) {
     setVersions('geckodriver', argv, options.browserDrivers);
-  }
-  if (argv['iedriver'] as boolean) {
-    setVersions('iedriver', argv, options.browserDrivers);
   }
   if (argv['selenium']) {
     options.server = {};
